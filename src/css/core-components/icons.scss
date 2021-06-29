@@ -1,12 +1,26 @@
 .heartIcon {
   background-size: 90%;
   background-image: url(../assets/img/heart.svg);
+  @include iconHover;
 
   &.fullIcon {
     background-image: url(../assets/img/heart-full.svg);
   }
+
+  &:hover {
+    background-image: url(../assets/img/heart-full.svg);
+  }
+
+  &.active {
+    @include iconClick;
+  }
 }
 
 .basketIcon {
+  @include iconHover;
   background-image: url(../assets/img/BasketWhite.svg);
+
+  &.active {
+    @include iconClick;
+  }
 }

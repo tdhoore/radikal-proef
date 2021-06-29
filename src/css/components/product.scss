@@ -24,11 +24,13 @@
     opacity: 0;
     width: 100%;
     height: 100%;
+    @include uniOut;
   }
 
   & header,
   & .content {
     opacity: 0;
+    @include uniOut;
   }
 
   & .mainImage {
@@ -61,9 +63,24 @@
     }
 
     & .price {
-      background-color: $accentText;
+      position: relative;
       color: $textColor;
       padding: 0.3rem;
+
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        transform: scaleY(0);
+        opacity: 0;
+        background-color: $accentText;
+        transition: all 250ms 250ms cubic-bezier(0.52, 0.34, 0.54, 1.11);
+      }
     }
   }
 
@@ -82,12 +99,24 @@
 
   &:hover {
     &::after {
-      opacity: 1;
+      @include fadeIn;
     }
 
-    & header,
+    & header {
+      @include multiple_animations(($fadeInStep2, $moveFromTopstep2));
+    }
+
     & .content {
-      opacity: 1;
+      @include multiple_animations(($fadeInStep3, $moveFromTopstep3));
+
+      & .priceing {
+        & .price {
+          &::after {
+            opacity: 1;
+            transform: scaleY(1);
+          }
+        }
+      }
     }
   }
 }

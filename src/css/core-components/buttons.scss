@@ -11,6 +11,14 @@
   &.whiteBtn {
     color: $accentText;
     border: solid $line $accentText;
+
+    &::after {
+      background-color: $accentText;
+    }
+
+    &:hover {
+      color: $textColor;
+    }
   }
 }
 
