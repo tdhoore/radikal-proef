@@ -1,0 +1,12 @@
+.heartIcon {
+  background-size: 90%;
+  background-image: url(../assets/img/heart.svg);
+
+  &.fullIcon {
+    background-image: url(../assets/img/heart-full.svg);
+  }
+}
+
+.basketIcon {
+  background-image: url(../assets/img/BasketWhite.svg);
+}

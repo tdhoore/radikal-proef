@@ -1,0 +1,19 @@
+@import "init/normalize.scss";
+@import "init/vars.scss";
+@import "init/reset.scss";
+@import "init/fonts.scss";
+@import "init/mixins.scss";
+@import "core-components/buttons.scss";
+@import "core-components/icons.scss";
+@import "init/global.scss";
+@import "core-components/forms.scss";
+@import "components/mainHeader.scss";
+@import "components/mainFooter.scss";
+@import "components/productsWrapper.scss";
+@import "components/product.scss";
+@import "components/productPages.scss";
+@import "components/filter.scss";
+
+.hide {
+  display: none;
+}

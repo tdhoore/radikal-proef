@@ -1,0 +1,107 @@
+.product {
+  position: relative;
+  z-index: 2;
+  height: 60vh;
+  margin-bottom: $pad;
+  color: $accentText;
+  display: flex;
+  flex-direction: column;
+  padding: $pad * 2;
+  cursor: pointer;
+
+  & h3 {
+    color: $accentText;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    display: block;
+    background-color: $accentFade;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  & header,
+  & .content {
+    opacity: 0;
+  }
+
+  & .mainImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    object-fit: cover;
+    display: block;
+  }
+
+  & header {
+    flex: 2;
+
+    & h3 {
+      margin-bottom: $pad;
+    }
+  }
+
+  & .priceing {
+    display: flex;
+    margin-bottom: $pad;
+    align-items: center;
+
+    & .oldPrice {
+      margin-right: $pad * 2;
+      text-decoration: line-through;
+    }
+
+    & .price {
+      background-color: $accentText;
+      color: $textColor;
+      padding: 0.3rem;
+    }
+  }
+
+  & footer {
+    display: flex;
+    align-items: center;
+
+    & .ghostBtn {
+      flex: 2;
+    }
+
+    & .iconBtn {
+      margin-left: $pad * 2;
+    }
+  }
+
+  &:hover {
+    &::after {
+      opacity: 1;
+    }
+
+    & header,
+    & .content {
+      opacity: 1;
+    }
+  }
+}
+
+@media only screen and (min-width: 740px) {
+  .product {
+    height: 35rem;
+    flex: 2;
+    margin-bottom: 0;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .product {
+    height: 45rem;
+  }
+}

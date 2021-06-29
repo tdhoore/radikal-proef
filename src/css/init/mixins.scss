@@ -1,0 +1,72 @@
+@mixin p {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.6rem;
+  line-height: 2rem;
+  color: $textColor;
+}
+
+@mixin buttonText {
+  @include p;
+  color: $textColor;
+  text-decoration: none;
+}
+
+@mixin buttonBase {
+  @include buttonText;
+  display: block;
+  padding: $pad;
+  border: solid $line $accent;
+  text-align: center;
+  background-color: $accent;
+  transition: all 150ms ease;
+
+  @media (min-width: 1024px) {
+    &:hover {
+    }
+  }
+}
+
+@mixin h($level) {
+  font-family: "DM Sans", sans-serif;
+  color: $textColor;
+
+  @if $level == 1 {
+    font-size: $pad * 3;
+    line-height: $pad * 4;
+  }
+
+  @if $level == 2 {
+    font-size: 2.4rem;
+      line-height:3.2rem;
+  }
+
+  @media (min-width: 740px) {
+    @if $level == 1 {
+      font-size: 4.2rem;
+      line-height: 6rem;
+    }
+
+    @if $level == 2 {
+      font-size: 2.4rem;
+      line-height:3.2rem;
+    }
+  }
+}
+
+@mixin roundBtn {
+  display: block;
+  width: $pad * 6;
+  height: $pad * 6;
+  border-radius: 50%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin iconMaster {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}

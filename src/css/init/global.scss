@@ -1,0 +1,62 @@
+body {
+  background-color: $bg;
+  @include p;
+}
+
+h1 {
+  @include h(1);
+}
+
+h3,
+legend {
+  @include h(2);
+}
+
+.strong {
+  font-weight: bold;
+}
+
+.small {
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+}
+
+.wrapper {
+  max-width: 143rem;
+  margin: 0 auto;
+  padding: 0 $pad * 2;
+}
+
+.bgcAfter {
+  &-red::after {
+    background-color: #eb5757;
+  }
+
+  &-orange::after {
+    background-color: #f2994a;
+  }
+
+  &-yellow::after {
+    background-color: #f2c94c;
+  }
+
+  &-green::after {
+    background-color: #27ae60;
+  }
+
+  &-blue::after {
+    background-color: #56ccf2;
+  }
+}
+
+@media only screen and (min-width: 740px) {
+  .wrapper {
+    padding: 0 $pad * 3;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .wrapper {
+    padding: 0 $pad * 4;
+  }
+}

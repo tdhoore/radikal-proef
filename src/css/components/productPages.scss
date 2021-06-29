@@ -1,0 +1,67 @@
+.productPages {
+    margin-bottom: $pad*2;
+
+    & ol {
+        display: flex;
+        align-items: center;
+        margin-bottom: $pad;
+
+        & li {
+            flex: 2;
+            margin-right: $pad*2;
+
+            &:last-of-type {
+                margin-right: 0;
+            }
+
+            & a {
+                display: flex;
+                align-items: center;
+                color: $dull;
+                
+                &::after {
+                    content: "";
+                    display: block;
+                    flex: 2;
+                    height: $line;
+                    background-color: $dull;
+                    margin-left: $pad*2;
+                }
+
+                &.active {
+                    color: $accent;
+                    font-size: 3rem;
+                    line-height: 4rem;
+
+                    &::after {
+                        background-color: $accent;
+                    } 
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width:740px){
+    .productPages {
+        display: flex;
+        justify-content: space-between;
+
+        & ol {
+            margin-bottom: 0;
+            margin-right: $pad*2;
+            & li {
+                & a {
+                    &::after {
+                        width: $pad*5;
+                    }
+                }
+            }
+        }
+
+        & .ghostBtn {
+            min-width: $pad*20;
+        }
+    }
+}
+

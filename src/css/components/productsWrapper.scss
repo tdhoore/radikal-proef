@@ -1,0 +1,18 @@
+.productsWrapper {
+  margin-bottom: $pad * 2;
+}
+
+@media only screen and (min-width: 740px) {
+  .productsWrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $pad;
+    margin-bottom: $pad * 5;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .productsWrapper {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

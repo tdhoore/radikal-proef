@@ -1,0 +1,21 @@
+.btn {
+  @include buttonBase;
+}
+
+.ghostBtn,
+.btnGhost {
+  @include buttonBase;
+  border: solid $line $accent;
+  background: transparent;
+
+  &.whiteBtn {
+    color: $accentText;
+    border: solid $line $accentText;
+  }
+}
+
+.iconBtn {
+  @include iconMaster;
+  width: 2.4rem;
+  height: 2.4rem;
+}

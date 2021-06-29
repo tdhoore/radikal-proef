@@ -1,0 +1,26 @@
+.filter {
+  position: absolute;
+  top: $pad * 2;
+  right: $pad * 2;
+
+  & .filterbtn {
+    background-color: $accent;
+    width: $pad * 5;
+    height: $pad * 5;
+  }
+
+  & .filterHolder {
+    position: absolute;
+    top: $pad * 12;
+    right: 0;
+    z-index: 50;
+    background-color: $card;
+    width: calc(100vw - 4rem);
+    height: 50rem;
+    padding: $pad * 2;
+
+    & legend {
+      margin-bottom: $pad;
+    }
+  }
+}

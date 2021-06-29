@@ -1,0 +1,75 @@
+.mainHeader {
+    padding-right: 0;
+    margin-bottom: $pad*3;
+
+    & h1{
+        margin-top: $pad*2;
+        margin-bottom: $pad;
+    }
+
+    & .navWrapper {
+        background-color: $card;
+        min-width: 100%;
+        overflow-y: auto; 
+        -ms-overflow-style: none; /* for Internet Explorer, Edge */
+        scrollbar-width: none; /* for Firefox */
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    & nav {
+        
+        & ul {
+            display: flex;
+            & li {
+                flex: 2;
+                & a {
+                    display: block;
+                    padding: $pad*2;
+                    min-width: $pad * 15;
+                    text-align: center;
+                    background-color: $card;
+
+                    &.active{
+                        background-color: $accent;
+                        color: $accentText;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 740px) {
+    .mainHeader {
+        margin-bottom: $pad*5;
+
+        & h1 {
+            margin-top: $pad*3;
+            margin-bottom: $pad*2;
+        }
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .mainHeader {
+        padding-right: $pad*4;
+        margin-bottom: $pad*7;
+
+        & h1 {
+            margin-top: $pad*4;
+            margin-bottom: $pad*3;
+        }
+
+        & nav {
+            & ul {
+                & li {
+                    & a {
+                        min-width: 0;
+                    }
+                }
+            }
+        }
+    }
+}
