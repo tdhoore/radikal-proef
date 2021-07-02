@@ -432,6 +432,36 @@ button:focus {
   outline: none;
 }
 
+@keyframes clickIcon {
+  0% {
+    transform: scale(1.2);
+  }
+  20% {
+    transform: scale(0.7);
+  }
+  60% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes moveFromTop {
+  0% {
+    transform: translateY(-1rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 .btn {
   font-family: "DM Sans", sans-serif;
   font-size: 1.6rem;
@@ -439,13 +469,39 @@ button:focus {
   color: #393d46;
   color: #393d46;
   text-decoration: none;
+  position: relative;
+  z-index: 1;
   display: block;
   padding: 1rem;
   border: solid 0.2rem #393d46;
   text-align: center;
   background-color: #393d46;
+  color: #fff;
   transition: all 150ms ease;
 }
+.btn::after {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  top: 0.4rem;
+  left: 0.4rem;
+  bottom: 0.4rem;
+  right: 0.4rem;
+  transform: scaleY(0.8);
+  opacity: 0;
+  background-color: #fff;
+  transition: all 150ms cubic-bezier(0.52, 0.34, 0.54, 1.11);
+}
+.btn:hover {
+  color: #393d46;
+}
+.btn:hover::after {
+  opacity: 1;
+  transform: scaleY(1);
+  transition: all 250ms cubic-bezier(0.52, 0.34, 0.54, 1.11);
+}
+
 .ghostBtn,
 .btnGhost {
   font-family: "DM Sans", sans-serif;
@@ -454,19 +510,64 @@ button:focus {
   color: #393d46;
   color: #393d46;
   text-decoration: none;
+  position: relative;
+  z-index: 1;
   display: block;
   padding: 1rem;
   border: solid 0.2rem #393d46;
   text-align: center;
   background-color: #393d46;
+  color: #fff;
   transition: all 150ms ease;
   border: solid 0.2rem #393d46;
   background: transparent;
+  color: #393d46;
+}
+.ghostBtn::after,
+.btnGhost::after {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  top: 0.4rem;
+  left: 0.4rem;
+  bottom: 0.4rem;
+  right: 0.4rem;
+  transform: scaleY(0.8);
+  opacity: 0;
+  background-color: #fff;
+  transition: all 150ms cubic-bezier(0.52, 0.34, 0.54, 1.11);
+}
+.ghostBtn:hover,
+.btnGhost:hover {
+  color: #393d46;
+}
+.ghostBtn:hover::after,
+.btnGhost:hover::after {
+  opacity: 1;
+  transform: scaleY(1);
+  transition: all 250ms cubic-bezier(0.52, 0.34, 0.54, 1.11);
+}
+.ghostBtn::after,
+.btnGhost::after {
+  background-color: #393d46;
+}
+.ghostBtn:hover,
+.btnGhost:hover {
+  color: #fff;
 }
 .ghostBtn.whiteBtn,
 .btnGhost.whiteBtn {
   color: #fff;
   border: solid 0.2rem #fff;
+}
+.ghostBtn.whiteBtn::after,
+.btnGhost.whiteBtn::after {
+  background-color: #fff;
+}
+.ghostBtn.whiteBtn:hover,
+.btnGhost.whiteBtn:hover {
+  color: #393d46;
 }
 
 .iconBtn {
@@ -480,13 +581,32 @@ button:focus {
 .heartIcon {
   background-size: 90%;
   background-image: url(/heart.31dfddf3.svg);
+  transition: backgroundImage 0ms ease, all 250ms cubic-bezier(0.52, 0.34, 0.54, 1.11);
+  transform: scale(1);
+}
+.heartIcon:hover {
+  transform: scale(1.2);
 }
 .heartIcon.fullIcon {
   background-image: url(/heart-full.e063c649.svg);
 }
+.heartIcon:hover {
+  background-image: url(/heart-full.e063c649.svg);
+}
+.heartIcon.active {
+  animation: clickIcon 300ms cubic-bezier(0.52, 0.34, 0.54, 1.11);
+}
 
 .basketIcon {
+  transition: backgroundImage 0ms ease, all 250ms cubic-bezier(0.52, 0.34, 0.54, 1.11);
+  transform: scale(1);
   background-image: url(/BasketWhite.2477fac6.svg);
+}
+.basketIcon:hover {
+  transform: scale(1.2);
+}
+.basketIcon.active {
+  animation: clickIcon 300ms cubic-bezier(0.52, 0.34, 0.54, 1.11);
 }
 
 body {
@@ -581,21 +701,27 @@ form label .input::after {
   width: 100%;
   background-color: #ccd0db;
 }
-form label .input::before {
-  content: "";
-  display: block;
+form label .input .underline {
   position: absolute;
   bottom: 0;
   height: 0.2rem;
   width: 100%;
   background-color: #393d46;
   transform: scaleX(0);
+  transition: all 300ms cubic-bezier(0.52, 0.34, 0.54, 1.11);
+  transform-origin: center left;
 }
 form label .input input {
   border: none;
   outline: none;
   padding: 0.5rem 0 1rem;
   width: 100%;
+}
+form label .input input:focus + .underline {
+  transform: scaleX(1);
+}
+form .rating {
+  cursor: pointer;
 }
 form .rating .custom {
   background-size: contain;
@@ -624,12 +750,14 @@ form .colorSelect .options {
 }
 form .colorSelect .colorOption {
   margin-right: 1rem;
+  cursor: pointer;
 }
 form .colorSelect .colorOption .custom {
   width: 3rem;
   height: 3rem;
   position: relative;
   border: solid 0 #393d46;
+  transition: all 50ms cubic-bezier(0.52, 0.34, 0.54, 1.11);
 }
 form .colorSelect .colorOption .custom::after {
   content: "";
@@ -640,6 +768,7 @@ form .colorSelect .colorOption .custom::after {
   left: 0;
   width: 100%;
   height: 100%;
+  transition: all 100ms cubic-bezier(0.52, 0.34, 0.54, 1.11);
 }
 form .colorSelect .colorOption input {
   display: none;
@@ -680,15 +809,47 @@ form .colorSelect .colorOption input:checked + .custom::after {
   flex: 2;
 }
 .mainHeader nav ul li a {
+  position: relative;
+  z-index: 1;
   display: block;
   padding: 2rem;
   min-width: 15rem;
   text-align: center;
   background-color: #fff;
+  transition: all 250ms cubic-bezier(0.52, 0.34, 0.54, 1.11);
+}
+.mainHeader nav ul li a::after {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  top: 0.4rem;
+  left: 0.4rem;
+  bottom: 0.4rem;
+  right: 0.4rem;
+  transform: scaleY(0.8);
+  opacity: 0;
+  background-color: #393d46;
+  transition: all 150ms cubic-bezier(0.52, 0.34, 0.54, 1.11);
 }
 .mainHeader nav ul li a.active {
   background-color: #393d46;
   color: #fff;
+}
+.mainHeader nav ul li a:hover {
+  color: #fff;
+}
+.mainHeader nav ul li a:hover::after {
+  opacity: 1;
+  transform: scaleY(1);
+  transition: all 150ms cubic-bezier(0.52, 0.34, 0.54, 1.11);
+}
+.mainHeader nav ul li a:active::after {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  transition: all 150ms cubic-bezier(0.52, 0.34, 0.54, 1.11);
 }
 
 @media only screen and (min-width: 740px) {
@@ -755,9 +916,11 @@ form .colorSelect .colorOption input:checked + .custom::after {
   opacity: 0;
   width: 100%;
   height: 100%;
+  transition: all 150ms cubic-bezier(0.52, 0.34, 0.54, 1.11);
 }
 .product header, .product .content {
   opacity: 0;
+  transition: all 150ms cubic-bezier(0.52, 0.34, 0.54, 1.11);
 }
 .product .mainImage {
   position: absolute;
@@ -785,9 +948,23 @@ form .colorSelect .colorOption input:checked + .custom::after {
   text-decoration: line-through;
 }
 .product .priceing .price {
-  background-color: #fff;
+  position: relative;
   color: #393d46;
   padding: 0.3rem;
+}
+.product .priceing .price::after {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  transform: scaleY(0);
+  opacity: 0;
+  background-color: #fff;
+  transition: all 250ms 250ms cubic-bezier(0.52, 0.34, 0.54, 1.11);
 }
 .product footer {
   display: flex;
@@ -800,10 +977,17 @@ form .colorSelect .colorOption input:checked + .custom::after {
   margin-left: 2rem;
 }
 .product:hover::after {
-  opacity: 1;
+  animation: fadeIn 300ms cubic-bezier(0.52, 0.34, 0.54, 1.11) forwards;
 }
-.product:hover header, .product:hover .content {
+.product:hover header {
+  animation: fadeIn 250ms 150ms cubic-bezier(0.52, 0.34, 0.54, 1.11) forwards,moveFromTop 250ms 150ms cubic-bezier(0.52, 0.34, 0.54, 1.11) forwards;
+}
+.product:hover .content {
+  animation: fadeIn 250ms 250ms cubic-bezier(0.52, 0.34, 0.54, 1.11) forwards,moveFromTop 250ms 250ms cubic-bezier(0.52, 0.34, 0.54, 1.11) forwards;
+}
+.product:hover .content .priceing .price::after {
   opacity: 1;
+  transform: scaleY(1);
 }
 
 @media only screen and (min-width: 740px) {
@@ -888,13 +1072,49 @@ form .colorSelect .colorOption input:checked + .custom::after {
   z-index: 50;
   background-color: #fff;
   width: calc(100vw - 4rem);
-  height: 50rem;
   padding: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms cubic-bezier(0.52, 0.34, 0.54, 1.11);
+  border: solid 0.2rem #393d46;
+}
+.filter .filterHolder.open {
+  opacity: 1;
+  pointer-events: all;
 }
 .filter .filterHolder legend {
   margin-bottom: 1rem;
 }
+.filter .filterOptions {
+  display: flex;
+}
+.filter .filterOptions button {
+  margin-right: 1rem;
+}
+.filter .filterOptions button.full {
+  flex: 2;
+}
+.filter .filterOptions button:last-of-type {
+  margin-right: 0;
+}
 
+@media only screen and (min-width: 740px) {
+  .filter {
+    top: 6rem;
+    right: 3rem;
+  }
+  .filter .filterHolder {
+    top: 13rem;
+    width: calc(100vw - 6rem);
+    max-width: 34rem;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .filter {
+    top: 6rem;
+    right: 3rem;
+  }
+}
 .hide {
   display: none;
 }

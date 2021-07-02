@@ -16,12 +16,13 @@
     z-index: 50;
     background-color: $card;
     width: calc(100vw - 4rem);
-    height: 50rem;
     padding: $pad * 2;
     opacity: 0;
     pointer-events: none;
+    transition: opacity 300ms cubic-bezier(0.52, 0.34, 0.54, 1.11);
+    border: solid $line $accent;
 
-    & .open {
+    &.open {
       opacity: 1;
       pointer-events: all;
     }
@@ -29,5 +30,41 @@
     & legend {
       margin-bottom: $pad;
     }
+  }
+
+  & .filterOptions {
+    display: flex;
+
+    & button {
+      margin-right: $pad;
+
+      &.full {
+        flex: 2;
+      }
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 740px) {
+  .filter {
+    top: $pad * 6;
+    right: $pad * 3;
+
+    & .filterHolder {
+      top: $pad * 13;
+      width: calc(100vw - 6rem);
+      max-width: $pad * 34;
+    }
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .filter {
+    top: $pad * 6;
+    right: $pad * 3;
   }
 }

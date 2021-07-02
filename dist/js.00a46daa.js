@@ -189,13 +189,148 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./..\\assets\\img\\heart.svg":[["heart.31dfddf3.svg","assets/img/heart.svg"],"assets/img/heart.svg"],"./..\\assets\\img\\heart-full.svg":[["heart-full.e063c649.svg","assets/img/heart-full.svg"],"assets/img/heart-full.svg"],"./..\\assets\\img\\BasketWhite.svg":[["BasketWhite.2477fac6.svg","assets/img/BasketWhite.svg"],"assets/img/BasketWhite.svg"],"./..\\assets\\img\\star.svg":[["star.312c017b.svg","assets/img/star.svg"],"assets/img/star.svg"],"./..\\assets\\img\\starFull.svg":[["starFull.5993236b.svg","assets/img/starFull.svg"],"assets/img/starFull.svg"],"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js"}],"js/index.js":[function(require,module,exports) {
+},{"./..\\assets\\img\\heart.svg":[["heart.31dfddf3.svg","assets/img/heart.svg"],"assets/img/heart.svg"],"./..\\assets\\img\\heart-full.svg":[["heart-full.e063c649.svg","assets/img/heart-full.svg"],"assets/img/heart-full.svg"],"./..\\assets\\img\\BasketWhite.svg":[["BasketWhite.2477fac6.svg","assets/img/BasketWhite.svg"],"assets/img/BasketWhite.svg"],"./..\\assets\\img\\star.svg":[["star.312c017b.svg","assets/img/star.svg"],"assets/img/star.svg"],"./..\\assets\\img\\starFull.svg":[["starFull.5993236b.svg","assets/img/starFull.svg"],"assets/img/starFull.svg"],"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js"}],"js/classes/HamburgerNav.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var HamburgerNav =
+/*#__PURE__*/
+function () {
+  function HamburgerNav() {
+    var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      navSelector: "",
+      navOpenBtn: "",
+      navCloseBtn: ""
+    };
+
+    _classCallCheck(this, HamburgerNav);
+
+    this.navSelector = params.navSelector;
+    this.navElem = null;
+    this.navOpenBtnSelector = params.navOpenBtn;
+    this.navOpenBtn = null;
+    this.navCloseBtnSelector = params.navOpenBtn;
+    this.navCloseBtn = null;
+    this.links = [];
+  }
+
+  _createClass(HamburgerNav, [{
+    key: "init",
+    value: function init() {
+      var _this = this;
+
+      //set elements
+      this.navElem = document.querySelector(this.navSelector);
+      this.navOpenBtn = document.querySelector(this.navOpenBtnSelector);
+      this.navCloseBtn = document.querySelector(this.navCloseBtnSelector); //check if exist
+
+      if (this.navElem && this.navOpenBtn && this.navCloseBtn) {
+        //check if same openBtn
+        if (this.navOpenBtn === this.navCloseBtn) {
+          this.navOpenBtn.removeEventListener("click", function (e) {
+            return _this.handleToggleNav(e);
+          });
+          this.navOpenBtn.addEventListener("click", function (e) {
+            return _this.handleToggleNav(e);
+          });
+        } else {
+          //add event listeners
+          this.navOpenBtn.addEventListener("click", function (e) {
+            return _this.handleToggleNav(e);
+          });
+          this.navOpenBtn.addEventListener("click", function (e) {
+            return _this.handleOpenNav(e);
+          });
+          this.navOpenBtn.removeEventListener("click", function (e) {
+            return _this.handleToggleNav(e);
+          });
+          this.navCloseBtn.addEventListener("click", function (e) {
+            return _this.handleCloseNav(e);
+          });
+        } //find all links
+
+
+        this.links = this.navElem.querySelectorAll("a"); //addlisteners to listen for #links
+
+        this.links.forEach(function (link) {
+          if (link.href.includes("#")) {
+            link.removeEventListener("click", function (e) {
+              return _this.handleClickHash(e);
+            });
+            link.addEventListener("click", function (e) {
+              return _this.handleClickHash(e);
+            });
+          }
+        });
+      }
+    }
+  }, {
+    key: "handleClickHash",
+    value: function handleClickHash(e) {
+      //close the current nav
+      this.closeNav();
+    }
+  }, {
+    key: "handleToggleNav",
+    value: function handleToggleNav(e) {
+      e.preventDefault();
+      this.navElem.classList.toggle("open");
+      this.navOpenBtn.classList.toggle("open");
+    }
+  }, {
+    key: "handleOpenNav",
+    value: function handleOpenNav(e) {
+      e.preventDefault();
+      this.navElem.classList.add("open");
+    }
+  }, {
+    key: "handleCloseNav",
+    value: function handleCloseNav(e) {
+      e.preventDefault();
+      this.navElem.classList.remove("open");
+    }
+  }, {
+    key: "closeNav",
+    value: function closeNav() {
+      this.navElem.classList.remove("open");
+      this.navOpenBtn.classList.remove("open");
+    }
+  }]);
+
+  return HamburgerNav;
+}();
+
+exports.default = HamburgerNav;
+},{}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
 require("../css/index.scss");
 
-console.log("test");
-},{"../css/index.scss":"css/index.scss"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var _HamburgerNav = _interopRequireDefault(require("./classes/HamburgerNav"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var init = function init() {
+  var hamBurger = new _HamburgerNav.default({
+    navSelector: ".filterHolder",
+    navOpenBtn: ".filterbtn",
+    navCloseBtn: ".filterbtn"
+  });
+  hamBurger.init();
+};
+
+init();
+},{"../css/index.scss":"css/index.scss","./classes/HamburgerNav":"js/classes/HamburgerNav.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -223,7 +358,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62133" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49508" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

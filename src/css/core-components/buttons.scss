@@ -7,6 +7,15 @@
   @include buttonBase;
   border: solid $line $accent;
   background: transparent;
+  color: $textColor;
+
+  &::after {
+    background-color: $accent;
+  }
+
+  &:hover {
+    color: $accentText;
+  }
 
   &.whiteBtn {
     color: $accentText;

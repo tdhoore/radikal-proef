@@ -14,11 +14,13 @@
 @mixin buttonBase {
   @include buttonText;
   position: relative;
+  z-index: 1;
   display: block;
   padding: $pad;
   border: solid $line $accent;
   text-align: center;
   background-color: $accent;
+  color: $accentText;
   transition: all 150ms ease;
 
   &::after {
@@ -32,11 +34,13 @@
     right: $line * 2;
     transform: scaleY(0.8);
     opacity: 0;
-    background-color: $accent;
+    background-color: $accentText;
     @include uniOut;
   }
 
   &:hover {
+    color: $accent;
+
     &::after {
       opacity: 1;
       transform: scaleY(1);

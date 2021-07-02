@@ -1,2 +1,14 @@
 import "../css/index.scss";
-console.log("test");
+import HamburgerNav from "./classes/HamburgerNav";
+
+const init = () => {
+  const hamBurger = new HamburgerNav({
+    navSelector: ".filterHolder",
+    navOpenBtn: ".filterbtn",
+    navCloseBtn: ".filterbtn",
+  });
+
+  hamBurger.init();
+};
+
+init();
