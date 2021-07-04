@@ -1,6 +1,6 @@
 .filter {
   position: absolute;
-  top: $pad * 2;
+  top: 0;
   right: $pad * 2;
 
   & .filterbtn {
@@ -15,7 +15,7 @@
     right: 0;
     z-index: 50;
     background-color: $card;
-    width: calc(100vw - 4rem);
+    width: calc(100vw - 5.8rem);
     padding: $pad * 2;
     opacity: 0;
     pointer-events: none;
@@ -51,7 +51,7 @@
 
 @media only screen and (min-width: 740px) {
   .filter {
-    top: $pad * 6;
+    top: $pad * 3;
     right: $pad * 3;
 
     & .filterHolder {
@@ -64,7 +64,7 @@
 
 @media only screen and (min-width: 1000px) {
   .filter {
-    top: $pad * 6;
-    right: $pad * 3;
+    top: $pad * 4;
+    right: $pad * 4;
   }
 }

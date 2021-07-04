@@ -23,6 +23,10 @@
   color: $accentText;
   transition: all 150ms ease;
 
+  &:active {
+    transform: scale(0.95);
+  }
+
   &::after {
     content: "";
     display: block;

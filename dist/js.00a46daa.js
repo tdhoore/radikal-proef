@@ -311,12 +311,212 @@ function () {
 }();
 
 exports.default = HamburgerNav;
+},{}],"js/classes/StarRating.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var StarRating =
+/*#__PURE__*/
+function () {
+  function StarRating() {
+    var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      starsHolderSelector: "",
+      clickedAnimClass: ""
+    };
+
+    _classCallCheck(this, StarRating);
+
+    this.starsHolderSelector = params.starsHolderSelector;
+    this.starsHolder = null;
+    this.clickedAnimClass = params.clickedAnimClass;
+    this.stars = [];
+    this.lastIndex = -1;
+    this.activeIndex = -1;
+  }
+
+  _createClass(StarRating, [{
+    key: "init",
+    value: function init() {
+      var _this = this;
+
+      //set the elements
+      this.starsHolder = document.querySelector(this.starsHolderSelector);
+
+      if (this.starsHolder) {
+        //exists zso continue
+        this.stars = this.starsHolder.querySelectorAll("input[type=checkbox]");
+        this.stars.forEach(function (star, index) {
+          star.addEventListener("input", function (e) {
+            return _this.handleChange(e, index);
+          });
+        });
+      }
+    }
+  }, {
+    key: "handleChange",
+    value: function handleChange(e, index) {
+      this.updatestars(index);
+      this.setAntimation(e.currentTarget);
+    }
+  }, {
+    key: "setAntimation",
+    value: function setAntimation(elem) {
+      var _this2 = this;
+
+      if (this.clickedAnimClass) {
+        elem.parentElement.classList.remove(this.clickedAnimClass);
+        setTimeout(function () {
+          elem.parentElement.classList.add(_this2.clickedAnimClass);
+        }, 50);
+      }
+    }
+  }, {
+    key: "updatestars",
+    value: function updatestars(index) {
+      var _this3 = this;
+
+      this.lastIndex = this.activeIndex;
+      this.activeIndex = index;
+      this.stars.forEach(function (star, starIndex) {
+        if (_this3.lastIndex !== _this3.activeIndex) {
+          star.checked = index >= starIndex;
+        } else {
+          star.checked = false;
+          _this3.lastIndex = -1;
+          _this3.activeIndex = -1;
+        } //reset animation
+
+
+        star.parentElement.classList.remove(_this3.clickedAnimClass);
+      });
+    }
+  }]);
+
+  return StarRating;
+}();
+
+exports.default = StarRating;
+},{}],"js/classes/ClearForm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var ClearForm =
+/*#__PURE__*/
+function () {
+  function ClearForm() {
+    var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      formSelector: "",
+      clearBtnSelector: "",
+      blackList: []
+    };
+
+    _classCallCheck(this, ClearForm);
+
+    this.formSelector = params.formSelector;
+    this.form = null;
+    this.clearBtnSelector = params.clearBtnSelector;
+    this.clearBtn = null;
+    this.blackList = params.blackList;
+  }
+
+  _createClass(ClearForm, [{
+    key: "init",
+    value: function init() {
+      var _this = this;
+
+      this.form = document.querySelector(this.formSelector);
+      this.clearBtn = document.querySelector(this.clearBtnSelector);
+
+      if (this.form) {
+        this.clearBtn.addEventListener("click", function (e) {
+          return _this.handleClickClearBtn(e);
+        });
+      }
+    }
+  }, {
+    key: "handleClickClearBtn",
+    value: function handleClickClearBtn(e) {
+      e.preventDefault();
+      this.clearForm();
+    }
+  }, {
+    key: "clearForm",
+    value: function clearForm() {
+      var _this2 = this;
+
+      var inputs = this.form.querySelectorAll("input");
+
+      if (inputs) {
+        inputs.forEach(function (input) {
+          var present = _this2.blackList.find(function (className) {
+            return input.classList.contains(className);
+          });
+
+          if (!present) {
+            //not blacklisted so go on
+            var type = input.getAttribute("type");
+
+            switch (type) {
+              case "text":
+                _this2.clearText(input);
+
+                break;
+
+              case "checkBox":
+                _this2.clearCheckBox(input);
+
+                break;
+            }
+          }
+        });
+      }
+    }
+  }, {
+    key: "clearText",
+    value: function clearText(input) {
+      input.value = "";
+    }
+  }, {
+    key: "clearCheckBox",
+    value: function clearCheckBox(input) {
+      input.checked = false;
+    }
+  }]);
+
+  return ClearForm;
+}();
+
+exports.default = ClearForm;
 },{}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
 require("../css/index.scss");
 
 var _HamburgerNav = _interopRequireDefault(require("./classes/HamburgerNav"));
+
+var _StarRating = _interopRequireDefault(require("./classes/StarRating"));
+
+var _ClearForm = _interopRequireDefault(require("./classes/ClearForm"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -327,10 +527,21 @@ var init = function init() {
     navCloseBtn: ".filterbtn"
   });
   hamBurger.init();
+  var starRating = new _StarRating.default({
+    starsHolderSelector: ".starRatingHolder",
+    clickedAnimClass: "clicked"
+  });
+  starRating.init();
+  var clearFilter = new _ClearForm.default({
+    formSelector: ".filterHolder",
+    clearBtnSelector: ".clearFilters",
+    blackList: []
+  });
+  clearFilter.init();
 };
 
 init();
-},{"../css/index.scss":"css/index.scss","./classes/HamburgerNav":"js/classes/HamburgerNav.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../css/index.scss":"css/index.scss","./classes/HamburgerNav":"js/classes/HamburgerNav.js","./classes/StarRating":"js/classes/StarRating.js","./classes/ClearForm":"js/classes/ClearForm.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -358,7 +569,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49508" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54394" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

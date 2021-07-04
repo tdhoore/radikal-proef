@@ -42,11 +42,20 @@ form {
   & .rating {
     cursor: pointer;
 
+    &.clicked {
+      @include iconClick;
+    }
+
     & .custom {
       @include iconMaster;
       width: $pad * 3;
       height: $pad * 3;
       background-image: url(../assets/img/star.svg);
+      transition: all 100ms cubic-bezier(0.52, 0.34, 0.54, 1.11);
+
+      &:hover {
+        transform: scale(1.05);
+      }
     }
 
     & input {
