@@ -24,3 +24,8 @@
     @include iconClick;
   }
 }
+
+.filterIcon {
+  @include iconMaster;
+  background-image: url(../assets/img/Filter.svg);
+}

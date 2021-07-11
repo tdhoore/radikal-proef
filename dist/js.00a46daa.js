@@ -189,7 +189,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./..\\assets\\img\\heart.svg":[["heart.31dfddf3.svg","assets/img/heart.svg"],"assets/img/heart.svg"],"./..\\assets\\img\\heart-full.svg":[["heart-full.e063c649.svg","assets/img/heart-full.svg"],"assets/img/heart-full.svg"],"./..\\assets\\img\\BasketWhite.svg":[["BasketWhite.2477fac6.svg","assets/img/BasketWhite.svg"],"assets/img/BasketWhite.svg"],"./..\\assets\\img\\star.svg":[["star.312c017b.svg","assets/img/star.svg"],"assets/img/star.svg"],"./..\\assets\\img\\starFull.svg":[["starFull.5993236b.svg","assets/img/starFull.svg"],"assets/img/starFull.svg"],"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js"}],"js/classes/HamburgerNav.js":[function(require,module,exports) {
+},{"./..\\assets\\img\\heart.svg":[["heart.31dfddf3.svg","assets/img/heart.svg"],"assets/img/heart.svg"],"./..\\assets\\img\\heart-full.svg":[["heart-full.e063c649.svg","assets/img/heart-full.svg"],"assets/img/heart-full.svg"],"./..\\assets\\img\\BasketWhite.svg":[["BasketWhite.2477fac6.svg","assets/img/BasketWhite.svg"],"assets/img/BasketWhite.svg"],"./..\\assets\\img\\Filter.svg":[["Filter.0575479c.svg","assets/img/Filter.svg"],"assets/img/Filter.svg"],"./..\\assets\\img\\star.svg":[["star.312c017b.svg","assets/img/star.svg"],"assets/img/star.svg"],"./..\\assets\\img\\starFull.svg":[["starFull.5993236b.svg","assets/img/starFull.svg"],"assets/img/starFull.svg"],"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js"}],"js/classes/HamburgerNav.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

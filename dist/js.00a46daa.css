@@ -616,6 +616,13 @@ button:focus {
   animation: clickIcon 300ms cubic-bezier(0.52, 0.34, 0.54, 1.11);
 }
 
+.filterIcon {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url(/Filter.0575479c.svg);
+}
+
 body {
   background-color: #f6f7fb;
   font-family: "DM Sans", sans-serif;
@@ -1079,6 +1086,7 @@ form .colorSelect .colorOption input:checked + .custom::after {
   background-color: #393d46;
   width: 5rem;
   height: 5rem;
+  background-size: 50%;
 }
 .filter .filterHolder {
   position: absolute;
