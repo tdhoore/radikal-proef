@@ -4,15 +4,19 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "parcel ./src/index.html",
-    "build": "parcel build ./src/index.html"
+    "start": "cross-env NODE_ENV=development & parcel ./src/index.html",
+    "build": "cross-env NODE_ENV=production & parcel build ./src/index.html"
   },
   "devDependencies": {
     "parcel": "1.12.3",
-    "sass": "^1.30.0"
+    "sass": "^1.30.0",
+    "cross-env": "^7.0.3"
   },
   "staticFiles": {
     "staticPath": "src/images",
     "watcherGlob": "**"
+  },
+  "dependencies": {
+    "gsap": "^3.7.0"
   }
 }
