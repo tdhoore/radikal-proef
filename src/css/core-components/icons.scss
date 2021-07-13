@@ -27,5 +27,47 @@
 
 .filterIcon {
   @include iconMaster;
-  background-image: url(../assets/img/Filter.svg);
+  background-image: url(../assets/img/Filter-white.svg);
+
+  &:hover {
+    background-image: url(../assets/img/Filter.svg);
+  }
+
+  &.active {
+    @include iconClick;
+  }
+}
+
+@mixin mainNavIcon($iconName, $reverse: false, $hover: true) {
+  @include iconMaster;
+
+  @if $reverse {
+    & .icon {
+      background-image: url(../assets/img/#{$iconName}-white.svg);
+    }
+
+    @if $hover {
+      &:hover .icon {
+        background-image: url(../assets/img/#{$iconName}.svg);
+      }
+    }
+  } @else {
+    & .icon {
+      background-image: url(../assets/img/#{$iconName}.svg);
+    }
+
+    @if $hover {
+      &:hover .icon {
+        background-image: url(../assets/img/#{$iconName}-white.svg);
+      }
+    }
+  }
+}
+
+.backpackIcon {
+  @include mainNavIcon("Backpack", false);
+
+  &.active {
+    @include mainNavIcon("Backpack", true, false);
+  }
 }

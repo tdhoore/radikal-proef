@@ -104,7 +104,16 @@
       & ul {
         & li {
           & a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             min-width: 0;
+
+            & .icon {
+              width: $pad * 4;
+              height: $pad * 4;
+              margin-bottom: $line;
+            }
           }
         }
       }
